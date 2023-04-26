@@ -10,13 +10,15 @@ function ItemListPage() {
     const [pages, setPages] = useState(1)
     const [currentPage, setCurrentPage] = useState(0)
     const [pageNumbers, setPageNumbers] = useState([])
+    const [category, setCategory] = useState('')
 
     useEffect(
         ()=>{
             axios.get(`https://eldenring.fanapis.com/api/${item}?limit=100&page=${currentPage}`)
             .then(res => {
-                console.log(res.data)
+                //console.log(res.data)
                 setItemList(res.data.data)
+                setCategory(item)
                 {
                     if(res.data.total/100 > 1 && res.data.total%100 > 0) {
                         setPages(Math.ceil(res.data.total/100))
@@ -46,9 +48,35 @@ function ItemListPage() {
   return (
     <div>
         <h1>{`${item}`}</h1>
+        {
+            category==='weapons'?
+            <div>
+                <p>Filter by:</p>
+                <button>Axe</button>
+                <button>Ballista</button>
+                <button>Bow</button>
+                <button>Claw</button>
+                <button>Colossal Sword</button>
+                <button>Colossal Weapon</button>
+                <button>Crossbow</button>
+                <button>Curved Greatsword</button>
+                <button>Curved Sword</button>
+                <button>Dagger</button>
+                <button>Flail</button>
+                <button>Fist</button>
+                <button>Glintstone Staff</button>
+                <button>Great Spear</button>
+                <button>Halberd</button>
+                <button>Hammer</button>
+                <button>Heavy Thrusting Sword</button>
+                <button>Sacred Seal</button>
+            </div>
+            :
+            null
+        }
         <div className="list-container">
             {
-                itemList.map(item => <ItemCard  key={`${item.id}`} item={item}/>)
+                itemList.map(item => <ItemCard  key={`${item.id}`} item={item} category={category}/>)
             }
         </div>
         <div className="page-numbers">

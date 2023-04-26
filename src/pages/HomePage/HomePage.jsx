@@ -15,6 +15,7 @@ function HomePage() {
             <button><Link to='/categories/classes'>Classes</Link></button>
             <button><Link to='/categories/creatures'>Creatures</Link></button>
             <button><Link to='/categories/incantations'>Incantations</Link></button>
+            <button><Link to='/categories/items'>Items</Link></button>
             <button><Link to='/categories/locations'>Locations</Link></button>
             <button><Link to='/categories/npcs'>NPC's</Link></button>
             <button><Link to='/categories/shields'>Shields</Link></button>
