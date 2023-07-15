@@ -14,7 +14,9 @@ function ItemListPage() {
 
     useEffect(
         ()=>{
-            axios.get(`https://eldenring.fanapis.com/api/${item}?limit=100&page=${currentPage}`)
+            const cancelToken = axios.CancelToken.source()
+
+            axios.get(`https://eldenring.fanapis.com/api/${item}?limit=100&page=${currentPage}`, {cancelToken: cancelToken.token})
             .then(res => {
                 //console.log(res.data)
                 setItemList(res.data.data)
@@ -27,7 +29,17 @@ function ItemListPage() {
                     }
                 }
             })
-            .catch(err=>console.log(err))
+            .catch(err=>{
+                if(axios.isCancel(err)) {
+                    console.log("Cancelled")
+                } else {
+                    console.log(err)
+                }
+            })
+
+            return () => {
+                cancelToken.cancel();
+            };
         }, [currentPage]
     )
 
