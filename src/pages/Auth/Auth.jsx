@@ -1,6 +1,6 @@
 import React from 'react'
 import './Auth.css'
-import {auth} from './../../config/firebaseConfig';
+import {auth} from './../../configs/firebaseConfig';
 import {createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom';
 

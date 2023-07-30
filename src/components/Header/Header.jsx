@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 import {FaHome} from "react-icons/fa";
 import {Link, useNavigate} from 'react-router-dom';
-import {auth} from '../../config/firebaseConfig'
+import {auth} from '../../configs/firebaseConfig'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {signOut} from 'firebase/auth'
 //npm install firebase
