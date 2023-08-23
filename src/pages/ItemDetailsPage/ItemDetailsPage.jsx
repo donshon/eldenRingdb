@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './ItemDetailsPage.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Comment from './../../components/Comment/Comment';
 
 function ItemDetailsPage() {
   const {category, id} = useParams();
@@ -25,6 +26,7 @@ function ItemDetailsPage() {
           <h2>{object.name}</h2>
           <img src={object.image}/>
         </div>
+        <Comment itemId={`${id}`}/>
     </div>
   )
 }

@@ -1,12 +1,44 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './HomePage.css'
 import { Link } from 'react-router-dom'
+import SearchResults from '../../components/SearchResults/SearchResults'
+import axios from 'axios'
 
 function HomePage() {
+  const [category, setCategory] = useState("")
+
+  //state for search
+  const [query, setQuery] = useState("")
+  const [queryResults, setQueryResults] = useState([])
+
+  const handleSearch = (e) => {
+    //store search input in state
+    setQuery(e.target.value)
+    //call api to get matching search input
+    axios.get(`https://eldenring.fanapis.com/api/${category}?name=${query}`)
+    .then(res => {
+      //console.log(res.data.results)
+      setQueryResults(res.data.data)
+    })
+    .catch(err => console.log(err))
+  }
+
   return (
     <div className="home-container">
         <h1>Elden Ring Database</h1>
-        <input type="text" placeholder="Search..."/>
+        <div>
+          <input placeholder="Search..." className="searchBox" onChange={handleSearch}/>
+          {
+              query?
+              <div className="search-results-container">
+                {
+                  queryResults.map(item => <SearchResults key={item.id} thing={item} query={setQuery}/>)
+                }
+              </div>
+              :
+              null
+            }
+        </div>
         <div className="categories">
             <button><Link to='/categories/ammos'>Ammos</Link></button>
             <button><Link to='/categories/armors'>Armors</Link></button>

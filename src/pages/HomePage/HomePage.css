@@ -5,4 +5,22 @@
     align-items: center;
     background-color: black;
     color: white;
+    height: 100vh;
+}
+
+.searchBox {
+    width: 30%;
+    height: 40px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.categories button {
+    margin: 10px;
 }

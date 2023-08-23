@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './Comment.css'
 import {auth, db} from '../../configs/firebaseConfig'
 import {useAuthState} from 'react-firebase-hooks/auth'
